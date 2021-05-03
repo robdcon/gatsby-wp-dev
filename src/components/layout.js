@@ -7,6 +7,9 @@ const Layout = ({ isHomePage, children }) => {
     wp: {
       generalSettings: { title },
     },
+    allWpProject: {
+     edges
+    }
   } = useStaticQuery(graphql`
     query LayoutQuery {
       wp {
@@ -14,9 +17,18 @@ const Layout = ({ isHomePage, children }) => {
           title
           description
         }
+      },
+      allWpProject {
+        edges {
+          node {
+            title
+            link
+          }
+        }
       }
     }
   `)
+console.log(edges)
 
   return (
     <div className="global-wrapper" data-is-root-path={isHomePage}>
@@ -31,6 +43,11 @@ const Layout = ({ isHomePage, children }) => {
           </Link>
         )}
       </header>
+      <nav>
+        {edges.map(({node}) => {
+          return (<a href={node.link} key={node.title}>{node.title}</a> )
+        })}
+      </nav>
 
       <main>{children}</main>
 
