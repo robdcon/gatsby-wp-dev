@@ -13,18 +13,25 @@ const chunk = require(`lodash/chunk`)
  */
 exports.createPages = async gatsbyUtilities => {
   // Query our posts from the GraphQL server
-  const posts = await getPosts(gatsbyUtilities)
+  const posts = await getPosts(gatsbyUtilities);
+
+  const projects = await getProjects(gatsbyUtilities);
 
   // If there are no posts in WordPress, don't do anything
-  if (!posts.length) {
+  if (!posts.length && !projects.length) {
     return
   }
+
+  // await createProjectArchive({ projects, gatsbyUtilities })
+
+  await createIndividualProjectPages({ projects, gatsbyUtilities })
 
   // If there are posts, create pages for them
   await createIndividualBlogPostPages({ posts, gatsbyUtilities })
 
   // And a paginated archive
   await createBlogPostArchive({ posts, gatsbyUtilities })
+
 }
 
 /**
@@ -57,7 +64,36 @@ const createIndividualBlogPostPages = async ({ posts, gatsbyUtilities }) =>
         },
       })
     )
-  )
+  );
+
+const createIndividualProjectPages = async ({ projects, gatsbyUtilities }) =>
+  Promise.all(
+    projects.map(({ previous, project, next }) =>
+      // createPage is an action passed to createPages
+      // See https://www.gatsbyjs.com/docs/actions#createPage for more info
+      gatsbyUtilities.actions.createPage({
+        // Use the WordPress uri as the Gatsby page path
+        // This is a good idea so that internal links and menus work 👍
+        path: project.uri,
+
+        // use the blog post template as the page component
+        component: path.resolve(`./src/templates/project.js`),
+
+        // `context` is available in the template as a prop and
+        // as a variable in GraphQL.
+        context: {
+          // we need to add the post id here
+          // so our blog post template knows which blog post
+          // the current page is (when you open it in a browser)
+          id: project.id,
+
+          // We also use the next and previous id's to query them and add links!
+          previousProjectId: previous ? previous.id : null,
+          nextProjectId: next ? next.id : null,
+        },
+      })
+    )
+  );
 
 /**
  * This function creates all the individual blog pages in this site
@@ -71,7 +107,7 @@ async function createBlogPostArchive({ posts, gatsbyUtilities }) {
         }
       }
     }
-  `)
+  `);
 
   const { postsPerPage } = graphqlResult.data.wp.readingSettings
 
@@ -152,7 +188,7 @@ async function getPosts({ graphql, reporter }) {
         }
       }
     }
-  `)
+  `);
 
   if (graphqlResult.errors) {
     reporter.panicOnBuild(
@@ -163,4 +199,46 @@ async function getPosts({ graphql, reporter }) {
   }
 
   return graphqlResult.data.allWpPost.edges
+}
+
+/**
+ * Get Projects (Cutom Post Type)
+ */
+
+async function getProjects({graphql, reporter}) {
+  const graphqlResult = await graphql(/* GraphQL */ `
+    query WpProjects {
+      # Query all WordPress blog posts sorted by date
+      allWpProject(sort: { fields: [date], order: DESC }) {
+        edges {
+          previous {
+            id
+          }
+
+          # note: this is a GraphQL alias. It renames "node" to "post" for this query
+          # We're doing this because this "node" is a post! It makes our code more readable further down the line.
+          project: node {
+            id
+            uri
+            title
+            slug
+          }
+
+          next {
+            id
+          }
+        }
+      }
+    }`
+  );
+
+  if (graphqlResult.errors) {
+    reporter.panicOnBuild(
+      `There was an error loading your blog posts`,
+      graphqlResult.errors
+    )
+    return
+  }
+
+  return graphqlResult.data.allWpProject.edges;
 }
