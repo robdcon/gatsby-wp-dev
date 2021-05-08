@@ -7,7 +7,7 @@ const Layout = ({ isHomePage, children }) => {
     wp: {
       generalSettings: { title },
     },
-    allWpProject: {
+    allWpPersonalProject: {
      edges
     }
   } = useStaticQuery(graphql`
@@ -18,7 +18,7 @@ const Layout = ({ isHomePage, children }) => {
           description
         }
       },
-      allWpProject {
+      allWpPersonalProject {
         edges {
           node {
             title
@@ -28,7 +28,6 @@ const Layout = ({ isHomePage, children }) => {
       }
     }
   `)
-console.log(edges)
 
   return (
     <div className="global-wrapper" data-is-root-path={isHomePage}>

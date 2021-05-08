@@ -18,9 +18,9 @@ exports.createPages = async gatsbyUtilities => {
   const projects = await getProjects(gatsbyUtilities);
 
   // If there are no posts in WordPress, don't do anything
-  if (!posts.length && !projects.length) {
-    return
-  }
+  // if (!posts.length && !projects.length) {
+  //   return
+  // }
 
   // await createProjectArchive({ projects, gatsbyUtilities })
 
@@ -207,9 +207,9 @@ async function getPosts({ graphql, reporter }) {
 
 async function getProjects({graphql, reporter}) {
   const graphqlResult = await graphql(/* GraphQL */ `
-    query WpProjects {
+    query PersonalProjectsQuery {
       # Query all WordPress blog posts sorted by date
-      allWpProject(sort: { fields: [date], order: DESC }) {
+      allWpPersonalProject(sort: { fields: [date], order: DESC }) {
         edges {
           previous {
             id
@@ -240,5 +240,5 @@ async function getProjects({graphql, reporter}) {
     return
   }
 
-  return graphqlResult.data.allWpProject.edges;
+  return graphqlResult.data.allWpPersonalProject.edges;
 }

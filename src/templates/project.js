@@ -93,7 +93,7 @@ export const pageQuery = graphql`
     $nextProjectId: String
   ) {
     # selecting the current project by id
-    project: wpProject(id: { eq: $id }) {
+    project: wpPersonalProject(id: { eq: $id }) {
       id
       content
       title
@@ -114,13 +114,13 @@ export const pageQuery = graphql`
     }
 
     # this gets us the previous project by id (if it exists)
-    previous: wpProject(id: { eq: $previousProjectId }) {
+    previous: wpPersonalProject(id: { eq: $previousProjectId }) {
       uri
       title
     }
 
     # this gets us the next project by id (if it exists)
-    next: wpProject(id: { eq: $nextProjectId }) {
+    next: wpPersonalProject(id: { eq: $nextProjectId }) {
       uri
       title
     }

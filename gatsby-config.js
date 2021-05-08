@@ -29,7 +29,7 @@ module.exports = {
         url:
           process.env.WPGRAPHQL_URL ||
           // `https://wpgatsbydemo.wpengine.com/graphql`,
-          `http://localhost/wp_dev/graphql`,
+          `https://webdesign.robdcon.co.uk/graphql`,
       },
     },
 
