@@ -11,13 +11,29 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-const HomePage = () => {
+const HomePage = ({data}) => {
+    console.log('Data:', data)
     return (
         <Layout>
-            <h1>Home</h1>
+            <h1>{data.wpPage.HeroDetails.heading}</h1>
+            <p>{data.wpPage.HeroDetails.heading}</p>
+            <button>{data.wpPage.HeroDetails.ctaText}</button>
         </Layout>
     )
 }
 
 export default HomePage;
 
+export const pageQuery = graphql`
+    query wpPageQuery {
+        wpPage(id: {eq: "cG9zdDo0OTI="}) {
+            title
+            uri
+            HeroDetails {
+              ctaText
+              heading
+              subheading
+            }
+          }
+    }
+`;

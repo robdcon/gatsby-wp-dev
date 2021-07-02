@@ -14,7 +14,7 @@ const BlogIndex = ({
 
   if (!posts.length) {
     return (
-      <Layout isHomePage>
+      <Layout>
         <SEO title="All posts" />
         <Bio />
         <p>
@@ -26,7 +26,7 @@ const BlogIndex = ({
   }
 
   return (
-    <Layout isHomePage>
+    <Layout>
       <SEO title="All posts" />
 
       <Bio />
