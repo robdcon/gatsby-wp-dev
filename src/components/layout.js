@@ -1,13 +1,14 @@
 import React from "react"
 import { Link, useStaticQuery, graphql } from "gatsby"
 import parse from "html-react-parser"
+import CollapsableNavigation from "./CollapsableNavigation";
 
 const Layout = ({ isHomePage, children }) => {
   const {
     wp: {
       generalSettings: { title },
     },
-    allWpPersonalProject: {
+    allWpPage: {
      edges
     }
   } = useStaticQuery(graphql`
@@ -18,7 +19,7 @@ const Layout = ({ isHomePage, children }) => {
           description
         }
       },
-      allWpPersonalProject {
+      allWpPage {
         edges {
           node {
             title
@@ -32,6 +33,7 @@ const Layout = ({ isHomePage, children }) => {
   return (
     <div className="global-wrapper" data-is-root-path={isHomePage}>
       <header className="global-header">
+        <CollapsableNavigation pages={edges} />
         {isHomePage ? (
           <h1 className="main-heading">
             <Link to="/">{parse(title)}</Link>
@@ -42,11 +44,11 @@ const Layout = ({ isHomePage, children }) => {
           </Link>
         )}
       </header>
-      <nav>
+      {/* <nav>
         {edges.map(({node}) => {
           return (<a href={node.link} key={node.title}>{node.title}</a> )
         })}
-      </nav>
+      </nav> */}
 
       <main>{children}</main>
 
