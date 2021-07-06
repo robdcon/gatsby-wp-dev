@@ -7,21 +7,33 @@ export const NavWrapper = styled.nav`
     position: fixed;    
     top: 0;
     left: 0;
-    padding-top: 80px;
-    width: 100%;
     display: flex;
-    justify-content: center;
+    width: 100%;
     background-color: #000;
-    min-height: 100vh;
 
-    &.nav-open-false {
-        display: none;
+    &.mobile-nav {
+        padding-top: 80px;
+        justify-content: center;
+        min-height: 100vh;
+
+        &.nav-open-false {
+            display: none;
+        }
+
+        ${media.desktop`
+            display: none;
+        `}
     }
 
-    ${media.desktop`
+    &.desktop-nav {
+        display: none;
         min-height: 80px;
         padding-top: 0;
-    `}
+
+        ${media.desktop`
+            display: flex;
+        `}
+    }
 `;
 
 export const Nav = styled.ul`
@@ -69,7 +81,4 @@ export const MenuToggle = styled(MenuIcon)`
     ${media.desktop`
         display: none;
     `}
-
-
-
 `;
