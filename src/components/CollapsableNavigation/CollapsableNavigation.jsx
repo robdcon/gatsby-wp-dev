@@ -1,6 +1,6 @@
 import React, {useRef, useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
-import { NavWrapper, Nav, NavLink } from './CollapsableNavigation.styles';
+import { NavWrapper, Nav, NavListItem, NavLink } from './CollapsableNavigation.styles';
 
 const CollapsableNavigation = ({pages}) => {
  console.log('pages: ', pages)
@@ -11,9 +11,11 @@ const CollapsableNavigation = ({pages}) => {
       pages && pages.map(({node}) => {
         console.log(node)
         return(
-          <NavLink key={node.slug} to={node.link}>
-            {node.title}
-          </NavLink>
+          <NavListItem>
+            <NavLink key={node.slug} to={node.link}>
+              {node.title}
+            </NavLink>
+          </NavListItem>
         )
       })
     }
