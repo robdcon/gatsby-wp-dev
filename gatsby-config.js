@@ -22,7 +22,7 @@ module.exports = {
         lang: 'en'
       }
     },
-    
+
     {
       resolve: `gatsby-plugin-material-ui`,
       options: {
@@ -33,6 +33,7 @@ module.exports = {
     },
     
     `gatsby-plugin-styled-components`,
+    
     {
       /**
        * First up is the WordPress source plugin that connects Gatsby
