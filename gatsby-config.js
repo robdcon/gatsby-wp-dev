@@ -14,6 +14,15 @@ module.exports = {
    * If you need any more you can search here: https://www.gatsbyjs.com/plugins/
    */
   plugins: [
+    `gatsby-plugin-wpgraphql-seo`,
+
+    {
+      resolve: 'gatsby-plugin-html-attributes',
+      options: {
+        lang: 'en'
+      }
+    },
+    
     {
       resolve: `gatsby-plugin-material-ui`,
       options: {
