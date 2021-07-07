@@ -7,7 +7,6 @@ const CollapsableNavigation = ({pages}) => {
   const handleNav = () => {
     const isOpen = navOpen;
     setNavOpen(!isOpen);
-    console.log(navOpen);
   }
 
   return (
@@ -18,9 +17,8 @@ const CollapsableNavigation = ({pages}) => {
       <Nav>
       {
         pages && pages.map(({node}) => {
-          console.log(node)
           return(
-            <NavListItem>
+            <NavListItem key={node.title}>
               <NavLink key={node.slug} to={node.link}>
                 {node.title}
               </NavLink>
@@ -35,9 +33,8 @@ const CollapsableNavigation = ({pages}) => {
       <Nav>
       {
         pages && pages.map(({node}) => {
-          console.log(node)
           return(
-            <NavListItem>
+            <NavListItem key={node.title}>
               <NavLink key={node.slug} to={node.link}>
                 {node.title}
               </NavLink>
