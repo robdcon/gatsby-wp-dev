@@ -5,6 +5,7 @@ import Theme from '../themes/theme';
 import { ThemeProvider } from "styled-components";
 import CollapsableNavigation from "./CollapsableNavigation";
 import Seo from "./seo";
+import {Helmet} from "react-helmet";
 
 const Layout = ({ isHomePage, children }) => {
   const {
@@ -33,6 +34,9 @@ const Layout = ({ isHomePage, children }) => {
   return (
     <ThemeProvider theme={Theme}>
       <GlobalStyles />
+      <Helmet>
+        <html lang="en" />
+      </Helmet>
       <Seo>
         <div className="wrapper" data-is-root-path={isHomePage}>
           <header className="header">
