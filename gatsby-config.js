@@ -53,6 +53,35 @@ module.exports = {
       },
     },
 
+    {
+      resolve: 'gatsby-plugin-react-axe',
+      options: {
+        // Number of milliseconds to wait for component updates to cease before
+        // performing an analysis of all the changes. This defaults to 1000ms (1 second).
+        debounce: 1000,
+
+        // Integrate react-axe in production. This defaults to false.
+        showInProduction: true,
+
+        // Options to pass to axe-core.
+        // See: https://github.com/dequelabs/axe-core/blob/master/doc/API.md#api-name-axeconfigure
+        axeOptions: {
+          // Your axe-core options.
+            runOnly: {
+              type: 'tag',
+              values: ['wcag2a', 'wcag2aa']
+            }
+        },
+
+        // Context to pass to axe-core.
+        // See: https://github.com/dequelabs/axe-core/blob/master/doc/API.md#context-parameter
+        // axeContext: {
+        //   // Your axe-core context.
+         
+        // },
+      },
+    },
+
     /**
      * We need this plugin so that it adds the "File.publicURL" to our site
      * It will allow us to access static url's for assets like PDF's
