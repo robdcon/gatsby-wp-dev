@@ -3,7 +3,7 @@ import { graphql } from "gatsby";
 
 import Bio from "../components/bio"
 import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Seo from "../components/seo"
 
 const ProjectIndex = ({
     data,
@@ -13,7 +13,7 @@ const ProjectIndex = ({
     console.log('ProjectIndex Data:', data)
     return(
         <Layout>
-            <SEO title="All projects" />
+            <Seo title="All projects" />
             <Bio />
             <h1>All Projects</h1>
             <div>

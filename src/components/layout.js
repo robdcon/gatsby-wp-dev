@@ -1,16 +1,13 @@
 import React from "react";
-import { Link, useStaticQuery, graphql } from "gatsby";
-import { GlobalStyles } from "../themes/globalStyles";
-import Theme from '../themes/Theme';
+import { useStaticQuery, graphql } from "gatsby";
+import { GlobalStyles } from "../themes/global-styles";
+import Theme from '../themes/theme';
 import { ThemeProvider } from "styled-components";
 import CollapsableNavigation from "./CollapsableNavigation";
-import SEO from "./seo";
+import Seo from "./seo";
 
 const Layout = ({ isHomePage, children }) => {
   const {
-    wp: {
-      generalSettings: { title },
-    },
     allWpPage: {
      edges
     }
@@ -36,7 +33,7 @@ const Layout = ({ isHomePage, children }) => {
   return (
     <ThemeProvider theme={Theme}>
       <GlobalStyles />
-      <SEO>
+      <Seo>
         <div className="wrapper" data-is-root-path={isHomePage}>
           <header className="header">
           <CollapsableNavigation pages={edges} />
@@ -61,7 +58,7 @@ const Layout = ({ isHomePage, children }) => {
             And <a href="https://wordpress.org/">WordPress</a>
           </footer>
         </div>
-      </SEO>
+      </Seo>
     </ThemeProvider>
   )
 }

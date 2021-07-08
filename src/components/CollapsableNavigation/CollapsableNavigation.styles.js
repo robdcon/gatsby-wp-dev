@@ -63,8 +63,13 @@ export const NavListItem = styled.li`
 `;
 
 export const NavLink = styled(Link)`
-    color: #fff;
-    text-decoration: none;
+    color: ${({theme}) => theme.colors.primaryColor};
+    transition: all .35s ease-in-out;
+    &:hover {
+        color: ${({theme}) => theme.colors.lightText};
+        transform: translateY(-5px);
+        text-decoration:none;
+    }
 `;
 
 export const MenuToggle = styled(MenuIcon)`
