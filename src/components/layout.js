@@ -4,8 +4,10 @@ import { GlobalStyles } from "../themes/global-styles";
 import Theme from '../themes/theme';
 import { ThemeProvider } from "styled-components";
 import CollapsableNavigation from "./CollapsableNavigation";
+import Footer from "./Footer/Footer";
 import Seo from "./seo";
 import {Helmet} from "react-helmet";
+
 
 const Layout = ({ isHomePage, children }) => {
   const {
@@ -40,7 +42,7 @@ const Layout = ({ isHomePage, children }) => {
       <Seo>
         <div className="wrapper" data-is-root-path={isHomePage}>
           <header className="header">
-          <CollapsableNavigation pages={edges} />
+            <CollapsableNavigation pages={edges} />
             {/* {isHomePage ? (
               <h1 className="main-heading">
                 <Link to="/">{parse(title)}</Link>
@@ -54,13 +56,13 @@ const Layout = ({ isHomePage, children }) => {
 
           <main>{children}</main>
 
-          <footer>
+          <Footer>
             © {new Date().getFullYear()}, Built with
             {` `}
-            <a href="https://www.gatsbyjs.com">Gatsby</a>
+            <Link href="https://www.gatsbyjs.com">Gatsby</Link>
             {` `}
-            And <a href="https://wordpress.org/">WordPress</a>
-          </footer>
+            And <Link href="https://wordpress.org/">WordPress</Link>
+          </Footer>
         </div>
       </Seo>
     </ThemeProvider>

@@ -1,11 +1,12 @@
-import React from "react"
-import { graphql } from "gatsby"
-import HeroSection from "../components/HeroSection"
+import React from "react";
+import { graphql } from "gatsby";
+import HeroSection from "../components/HeroSection";
+import Button from "../components/atoms/Button/Button";
 import Seo from 'gatsby-plugin-wpgraphql-seo';
 
 // We're using Gutenberg so we need the block styles
-import "@wordpress/block-library/build-style/style.css"
-import "@wordpress/block-library/build-style/theme.css"
+import "@wordpress/block-library/build-style/style.css";
+import "@wordpress/block-library/build-style/theme.css";
 
 import Layout from "../components/layout"
 
@@ -13,14 +14,14 @@ const HomePage = ({data}) => {
     console.log('Data:', data)
     return (
         <>
-        <Seo post={data.wpPage} />
-        <Layout>
-            <HeroSection>
-                <h1>{data.wpPage.HeroDetails.heading}</h1>
-                <p>{data.wpPage.HeroDetails.heading}</p>
-                <button>{data.wpPage.HeroDetails.ctaText}</button>
-            </HeroSection>
-        </Layout>
+            <Seo post={data.wpPage} />
+            <Layout>
+                <HeroSection>
+                    <h1>{data.wpPage.HeroDetails.heading}</h1>
+                    <p>{data.wpPage.HeroDetails.heading}</p>
+                    <Button text={data.wpPage.HeroDetails.ctaText} action={() => {console.log('clicked')}} />
+                </HeroSection>
+            </Layout>
         </>
     )
 }

@@ -50,6 +50,7 @@ const Theme = {
         subheadingLineHeight: "1.3",
         primaryFont: "Montserrat, Roboto, sans-serif",
         secondaryFont: "Open Sans, Roboto, sans-serif",
+
         buttonStyles: 
 
         `display: inline-block;
@@ -111,7 +112,16 @@ const Theme = {
             height: 100%;
         }
     `,
-    }
+    
+
+    },
+
+    horizontalNavStyles: `
+        display: flex;
+        flex-direction: column;
+    `,
+
+    footerBackground: colors.darkBackground
 }
 
 
