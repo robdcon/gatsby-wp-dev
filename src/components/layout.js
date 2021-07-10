@@ -1,10 +1,10 @@
 import React from "react";
-import { useStaticQuery, graphql } from "gatsby";
+import { useStaticQuery, graphql, Link } from "gatsby";
 import { GlobalStyles } from "../themes/global-styles";
 import Theme from '../themes/theme';
 import { ThemeProvider } from "styled-components";
 import CollapsableNavigation from "./CollapsableNavigation";
-import Footer from "./Footer/Footer";
+import Footer from "./Footer";
 import Seo from "./seo";
 import {Helmet} from "react-helmet";
 
@@ -43,15 +43,6 @@ const Layout = ({ isHomePage, children }) => {
         <div className="wrapper" data-is-root-path={isHomePage}>
           <header className="header">
             <CollapsableNavigation pages={edges} />
-            {/* {isHomePage ? (
-              <h1 className="main-heading">
-                <Link to="/">{parse(title)}</Link>
-              </h1>
-            ) : (
-              <Link className="header-link-home" to="/">
-                {title}
-              </Link>
-            )} */}
           </header>
 
           <main>{children}</main>
