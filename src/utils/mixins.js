@@ -7,7 +7,7 @@ export const display = css`
 `;
 
 export const customButtonStyles = css`
-    transition: border 0.5s ease-out 0.5s, color 0.5s ease-out;
+    ${'' /* transition: border 0.5s ease-out; */}
     background-color: transparent;
     border: 2px solid #dddddd;
     color: ${({theme}) => theme.colors.primaryColor};
@@ -28,7 +28,7 @@ export const customButtonStyles = css`
         height: 100%;
         border-width: 2px 0 2px 0;
         top: -2px;
-        left: 0;
+        left: -2px;
         transition-delay: 0.05s;
     }
 
@@ -36,23 +36,23 @@ export const customButtonStyles = css`
         width: 100%;
         height: 0;
         border-width: 0 2px 0 2px;
-        top: 0;
+        top: -2px;
         left: -2px;
     }
 
-    &:hover {
+    ${'' /* &:hover {
         border-color: ${({theme}) => theme.colors.primaryColor};
-    }
+    } */}
 
     &:active {
         border-color: transparent;
     }
 
     &:hover:before {
-        width: 100%;
+        width: calc(100% + 4px);
     }
 
     &:hover:after {
-        height: 100%;
+        height:calc(100% + 4px);
     }
 `;

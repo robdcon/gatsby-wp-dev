@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { media } from '../../../utils/media';
+// import { media } from '../../../utils/media';
 import * as mixins from '../../../utils/mixins';
 
 export const StyledButton = styled.button`
@@ -14,11 +14,6 @@ export const StyledButton = styled.button`
     font-weight: 600;
     opacity: .999;
     border-radius: 3px;
-
-    ${media.desktop`
-        width: auto;
-        min-width: 180px;
-    `}
 
     ${mixins.customButtonStyles};
 `;
