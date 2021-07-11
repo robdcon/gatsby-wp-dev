@@ -4,19 +4,21 @@ import Logo from '../../atoms/Logo';
 import CollapsableNavigation from '../CollapsableNavigation';
 import MenuToggle from '../../atoms/MenuToggle/MenuToggle';
 
-
-const Header = ({pages}) => {
+const Header = () => {
   const [navOpen, setNavOpen] = useState(false);
 
   const handleNav = () => {
     const isOpen = navOpen;
     setNavOpen(!isOpen);
   }
+
+  return(
   <StyledHeader className="header">
     <Logo />
-    <CollapsableNavigation pages={pages} />
+    <CollapsableNavigation navOpen={navOpen} />
     <MenuToggle action={handleNav} isNavOpen={navOpen} />
   </StyledHeader>
+  )
 };
 
 export default Header;

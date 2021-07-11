@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { media } from '../../../utils/media';
 
-export const NavWrapper = styled.nav`
+export const NavWrapper = styled.div`
     position: fixed;    
     top: 0;
     left: 0;

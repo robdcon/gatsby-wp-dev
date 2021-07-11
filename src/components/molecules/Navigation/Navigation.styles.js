@@ -3,36 +3,8 @@ import { media } from '../../../utils/media';
 import Link from '../../atoms/Link';
 
 export const Nav = styled.nav`
-    position: fixed;    
-    top: 0;
-    left: 0;
     display: flex;
     width: 100%;
-    background-color: #000;
-
-    &.mobile-nav {
-        padding-top: 80px;
-        justify-content: center;
-        min-height: 100vh;
-
-        &.nav-open-false {
-            display: none;
-        }
-
-        ${media.desktop`
-            display: none;
-        `}
-    }
-
-    &.desktop-nav {
-        display: none;
-        min-height: 80px;
-        padding-top: 0;
-
-        ${media.desktop`
-            display: flex;
-        `}
-    }
 `;
 
 export const NavList = styled.ul`

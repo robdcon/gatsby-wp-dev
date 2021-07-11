@@ -1,4 +1,4 @@
-import React from "react";
+import React, { createContext } from "react";
 import { useStaticQuery, graphql, Link } from "gatsby";
 import { GlobalStyles } from "../themes/global-styles";
 import Theme from '../themes/theme';
@@ -8,8 +8,9 @@ import Footer from "../components/organisms/Footer";
 import Seo from "../components/seo";
 import {Helmet} from "react-helmet";
 
-
+export const PageContext = createContext();
 const Layout = ({ isHomePage, children }) => {
+
   const {
     allWpPage: {
      edges
@@ -33,7 +34,9 @@ const Layout = ({ isHomePage, children }) => {
     }
   `)
 
+
   return (
+    <PageContext.Provider value={edges}>
     <ThemeProvider theme={Theme}>
       <GlobalStyles />
       <Helmet>
@@ -41,10 +44,8 @@ const Layout = ({ isHomePage, children }) => {
       </Helmet>
       <Seo>
         <div className="wrapper" data-is-root-path={isHomePage}>
-          <Header className="header" pages={edges} />
-
+          <Header className="header" />
           <main>{children}</main>
-
           <Footer>
             © {new Date().getFullYear()}, Built with
             {` `}
@@ -55,6 +56,7 @@ const Layout = ({ isHomePage, children }) => {
         </div>
       </Seo>
     </ThemeProvider>
+   </PageContext.Provider>
   )
 }
 
