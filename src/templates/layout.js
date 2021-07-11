@@ -3,7 +3,7 @@ import { useStaticQuery, graphql, Link } from "gatsby";
 import { GlobalStyles } from "../themes/global-styles";
 import Theme from '../themes/theme';
 import { ThemeProvider } from "styled-components";
-import CollapsableNavigation from "../components/organisms/CollapsableNavigation";
+import Header from '../components/organisms/Header';
 import Footer from "../components/organisms/Footer";
 import Seo from "../components/seo";
 import {Helmet} from "react-helmet";
@@ -41,9 +41,7 @@ const Layout = ({ isHomePage, children }) => {
       </Helmet>
       <Seo>
         <div className="wrapper" data-is-root-path={isHomePage}>
-          <header className="header">
-            <CollapsableNavigation pages={edges} />
-          </header>
+          <Header className="header" pages={edges} />
 
           <main>{children}</main>
 
