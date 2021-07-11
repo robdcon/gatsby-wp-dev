@@ -1,14 +1,14 @@
 import React from "react";
 import { graphql } from "gatsby";
-import HeroSection from "../components/HeroSection";
-import Button from "../components/atoms/Button/Button";
+import HeroSection from "../components/organisms/HeroSection";
+import Button from "../components/atoms/Button";
 import Seo from 'gatsby-plugin-wpgraphql-seo';
 
 // We're using Gutenberg so we need the block styles
 import "@wordpress/block-library/build-style/style.css";
 import "@wordpress/block-library/build-style/theme.css";
 
-import Layout from "../components/layout"
+import Layout from "../templates/layout";
 
 const HomePage = ({data}) => {
     console.log('Data:', data)

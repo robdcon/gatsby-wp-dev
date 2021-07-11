@@ -8,7 +8,7 @@ import "@wordpress/block-library/build-style/style.css"
 import "@wordpress/block-library/build-style/theme.css"
 
 import Bio from "../components/bio"
-import Layout from "../components/layout"
+import Layout from "./layout"
 import Seo from "../components/seo"
 
 const ProjectTemplate = ({ data: { previous, next, project } }) => {

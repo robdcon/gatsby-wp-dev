@@ -7,7 +7,6 @@ export const display = css`
 `;
 
 export const customButtonStyles = css`
-    ${'' /* transition: border 0.5s ease-out; */}
     background-color: transparent;
     border: 2px solid #dddddd;
     color: ${({theme}) => theme.colors.primaryColor};

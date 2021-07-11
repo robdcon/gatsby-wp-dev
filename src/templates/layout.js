@@ -3,9 +3,9 @@ import { useStaticQuery, graphql, Link } from "gatsby";
 import { GlobalStyles } from "../themes/global-styles";
 import Theme from '../themes/theme';
 import { ThemeProvider } from "styled-components";
-import CollapsableNavigation from "./CollapsableNavigation";
-import Footer from "./Footer";
-import Seo from "./seo";
+import CollapsableNavigation from "../components/organisms/CollapsableNavigation";
+import Footer from "../components/organisms/Footer";
+import Seo from "../components/seo";
 import {Helmet} from "react-helmet";
 
 
@@ -50,9 +50,9 @@ const Layout = ({ isHomePage, children }) => {
           <Footer>
             © {new Date().getFullYear()}, Built with
             {` `}
-            <Link href="https://www.gatsbyjs.com">Gatsby</Link>
+            <Link to="https://www.gatsbyjs.com">Gatsby</Link>
             {` `}
-            And <Link href="https://wordpress.org/">WordPress</Link>
+            And <Link to="https://wordpress.org/">WordPress</Link>
           </Footer>
         </div>
       </Seo>
