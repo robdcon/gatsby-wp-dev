@@ -405,6 +405,12 @@ summary {
   --color-heading: #1a202c;
   --color-heading-black: black;
   --color-accent: #d1dce5;
+
+  /** Layers */
+  --stack-level-1: 99999;
+  --stack-level-2: 9999;
+  --stack-level-3: 999;
+  --stack-level-4: 99;
 }
 
 /* HTML elements */
