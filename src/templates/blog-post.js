@@ -8,8 +8,8 @@ import "@wordpress/block-library/build-style/style.css"
 import "@wordpress/block-library/build-style/theme.css"
 
 import Bio from "../components/bio"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from "./layout"
+import Seo from "../components/seo"
 
 const BlogPostTemplate = ({ data: { previous, next, post } }) => {
   const featuredImage = {
@@ -19,7 +19,7 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
 
   return (
     <Layout>
-      <SEO title={post.title} description={post.excerpt} />
+      <Seo title={post.title} description={post.excerpt} />
 
       <article
         className="blog-post"

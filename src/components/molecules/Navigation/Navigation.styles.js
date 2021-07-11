@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-import MenuIcon from '@material-ui/icons/Menu'
-import { media } from '../../utils/media';
-import { Link } from "gatsby"
+import { media } from '../../../utils/media';
+import Link from '../../atoms/Link';
 
-export const NavWrapper = styled.nav`
+export const Nav = styled.nav`
     position: fixed;    
     top: 0;
     left: 0;
@@ -36,7 +35,7 @@ export const NavWrapper = styled.nav`
     }
 `;
 
-export const Nav = styled.ul`
+export const NavList = styled.ul`
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -63,22 +62,9 @@ export const NavListItem = styled.li`
 `;
 
 export const NavLink = styled(Link)`
-    color: #fff;
-    text-decoration: none;
-`;
-
-export const MenuToggle = styled(MenuIcon)`
-    position: fixed;
-    right: 24px;
-    top: 24px;
-    z-index: 999;
-    color: #fff;
-
-    &.nav-open-false {
-        color: #000;
+    &:hover {
+        color: ${({theme}) => theme.primaryColor};
+        transform: translateY(-5px);
+        text-decoration: none;
     }
-
-    ${media.desktop`
-        display: none;
-    `}
 `;

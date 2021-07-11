@@ -8,8 +8,8 @@ import "@wordpress/block-library/build-style/style.css"
 import "@wordpress/block-library/build-style/theme.css"
 
 import Bio from "../components/bio"
-import Layout from "../components/layout"
-import SEO from "../components/seo"
+import Layout from "./layout"
+import Seo from "../components/seo"
 
 const ProjectTemplate = ({ data: { previous, next, project } }) => {
   const featuredImage = {
@@ -19,7 +19,7 @@ const ProjectTemplate = ({ data: { previous, next, project } }) => {
 
   return (
     <Layout>
-      <SEO title={project.title} />
+      <Seo title={project.title} />
 
       <article
         className="project"

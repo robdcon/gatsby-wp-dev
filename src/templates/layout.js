@@ -1,16 +1,16 @@
 import React from "react";
-import { Link, useStaticQuery, graphql } from "gatsby";
-import { GlobalStyles } from "../themes/globalStyles";
-import Theme from '../themes/Theme';
+import { useStaticQuery, graphql, Link } from "gatsby";
+import { GlobalStyles } from "../themes/global-styles";
+import Theme from '../themes/theme';
 import { ThemeProvider } from "styled-components";
-import CollapsableNavigation from "./CollapsableNavigation";
-import SEO from "./seo";
+import CollapsableNavigation from "../components/organisms/CollapsableNavigation";
+import Footer from "../components/organisms/Footer";
+import Seo from "../components/seo";
+import {Helmet} from "react-helmet";
+
 
 const Layout = ({ isHomePage, children }) => {
   const {
-    wp: {
-      generalSettings: { title },
-    },
     allWpPage: {
      edges
     }
@@ -36,32 +36,26 @@ const Layout = ({ isHomePage, children }) => {
   return (
     <ThemeProvider theme={Theme}>
       <GlobalStyles />
-      <SEO>
+      <Helmet>
+        <html lang="en" />
+      </Helmet>
+      <Seo>
         <div className="wrapper" data-is-root-path={isHomePage}>
           <header className="header">
-          <CollapsableNavigation pages={edges} />
-            {/* {isHomePage ? (
-              <h1 className="main-heading">
-                <Link to="/">{parse(title)}</Link>
-              </h1>
-            ) : (
-              <Link className="header-link-home" to="/">
-                {title}
-              </Link>
-            )} */}
+            <CollapsableNavigation pages={edges} />
           </header>
 
           <main>{children}</main>
 
-          <footer>
+          <Footer>
             © {new Date().getFullYear()}, Built with
             {` `}
-            <a href="https://www.gatsbyjs.com">Gatsby</a>
+            <Link to="https://www.gatsbyjs.com">Gatsby</Link>
             {` `}
-            And <a href="https://wordpress.org/">WordPress</a>
-          </footer>
+            And <Link to="https://wordpress.org/">WordPress</Link>
+          </Footer>
         </div>
-      </SEO>
+      </Seo>
     </ThemeProvider>
   )
 }
