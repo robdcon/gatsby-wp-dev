@@ -55,3 +55,35 @@ export const customButtonStyles = css`
         height:calc(100% + 4px);
     }
 `;
+
+export const hoverStyles = css`
+    &:hover {
+        color: ${({theme}) => theme.colors.primaryColor};  
+        &[aria-current="page"]:after {
+            width: 100%;
+        }
+    }
+
+
+    &[aria-current="page"] {
+        &:after, &:before {
+            content: '';
+            position: absolute;
+            display: block;
+            height: 100%;
+            left: 0;
+            top: 0;
+            transition: 0.2s ease-in-out;
+        }
+
+        &:after {
+            width: 0;
+            border-bottom: 2px solid ${({theme}) => theme.colors.primaryColor};
+        }
+
+        &:before {
+            width: 100%;
+            border-bottom: 2px solid #fff;
+        }
+    }
+`;

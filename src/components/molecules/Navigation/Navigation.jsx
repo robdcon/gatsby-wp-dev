@@ -8,9 +8,7 @@ const Navigation = ({pages}) => (
       pages && pages.map(({node}) => {
           return(
             <NavListItem key={node.title}>
-              <NavLink key={node.slug} to={node.link}>
-                {node.title}
-              </NavLink>
+              <NavLink text={node.title} href={node.link} />
             </NavListItem>
           )
         })

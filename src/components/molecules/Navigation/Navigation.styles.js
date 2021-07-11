@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { media } from '../../../utils/media';
-import { Link } from "gatsby"
+import Link from '../../atoms/Link';
 
 export const Nav = styled.nav`
     position: fixed;    
@@ -62,14 +62,9 @@ export const NavListItem = styled.li`
 `;
 
 export const NavLink = styled(Link)`
-    font-family: ${({theme}) => theme.primaryFont};
-    color: ${({theme}) => theme.colors.primaryColor};
-    font-weight: 300;
-    text-decoration: none;
-    transition: all .2s ease-in-out;
     &:hover {
-        color: ${({theme}) => theme.colors.lightText};
+        color: ${({theme}) => theme.primaryColor};
         transform: translateY(-5px);
-        text-decoration:none;
+        text-decoration: none;
     }
 `;
