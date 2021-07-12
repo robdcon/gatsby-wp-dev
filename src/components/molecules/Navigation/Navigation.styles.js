@@ -15,8 +15,6 @@ export const NavList = styled.ul`
     margin: 0;
 
     ${media.desktop`
-        height: 80px;
-        min-height: auto;
         flex-direction: row;
         justify-content: center;
         align-items: center;

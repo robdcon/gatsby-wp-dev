@@ -1,15 +1,19 @@
 import React from 'react';
 import { StyledLogo } from './Logo.styles';
+import { StaticImage } from "gatsby-plugin-image";
 
-const Logo = ({src="https://webdesign.robdcon.co.uk/wp-content/uploads/2020/01/logo.png", alt=""}) => (
-  <StyledLogo 
-    className="logo" 
-    src={src} 
-    alt={alt}
-    placeholder="blurred"
-    layout="fixed"
-    width={100}
-  />
+const Logo = () => (
+  <StyledLogo>
+    <StaticImage 
+      className="logo" 
+      src="https://via.placeholder.com/100x100" 
+      alt=""
+      placeholder="blurred"
+      layout="fixed"
+      width={50}
+      height={50}
+    />
+  </StyledLogo>
 );
 
 export default Logo;
