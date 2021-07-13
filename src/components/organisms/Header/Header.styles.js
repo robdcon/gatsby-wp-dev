@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { display } from '../../../utils/mixins';
+import { centerContent } from '../../../utils/mixins';
 
 export const StyledHeader = styled.header`
-    ${display};
+    ${centerContent};
     justify-content: space-between;
     width: 100%;
     padding: 16px 24px;

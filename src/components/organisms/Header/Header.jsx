@@ -13,11 +13,11 @@ const Header = () => {
   }
 
   return(
-  <StyledHeader className="header">
-    <Logo src="https://via.placeholder.com/350x150" />
-    <CollapsableNavigation navOpen={navOpen} />
-    <MenuToggle action={handleNav} isNavOpen={navOpen} />
-  </StyledHeader>
+    <StyledHeader className="header">
+      <Logo src="https://via.placeholder.com/350x150" />
+      <CollapsableNavigation navOpen={navOpen} />
+      <MenuToggle action={handleNav} isNavOpen={navOpen} />
+    </StyledHeader>
   )
 };
 

@@ -15,7 +15,7 @@ export const NavList = styled.ul`
     margin: 0;
 
     ${media.desktop`
-        flex-direction: row;
+        ${props => !(props.vertical) && `flex-direction: row`};
         justify-content: center;
         align-items: center;
     `}

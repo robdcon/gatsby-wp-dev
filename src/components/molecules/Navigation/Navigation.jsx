@@ -3,11 +3,11 @@ import { PageContext } from '../../../templates/layout';
 import { Nav, NavList, NavListItem, NavLink } from './Navigation.styles';
 
 
-const Navigation = () => {
+const Navigation = (props) => {
   const pages = useContext(PageContext);
   return(
     <Nav className="nav">
-      <NavList>
+      <NavList {...props} >
       {
         pages && pages.map(({node}) => {
             return(
