@@ -1,6 +1,6 @@
 import {css} from 'styled-components';
 
-export const display = css`
+export const centerContent = css`
     display: flex;
     justify-content: center;
     align-items: center;

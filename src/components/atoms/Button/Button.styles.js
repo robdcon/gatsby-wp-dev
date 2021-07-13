@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 // import { media } from '../../../utils/media';
-import * as mixins from '../../../utils/mixins';
+import { centerContent, customButtonStyles } from '../../../utils/mixins';
 
 export const StyledButton = styled.button`
-    ${mixins.display}
+    ${centerContent}
     position: relative;
     min-width: 135px;
     min-height: 50px;
@@ -15,5 +15,5 @@ export const StyledButton = styled.button`
     opacity: .999;
     border-radius: 3px;
 
-    ${mixins.customButtonStyles};
+    ${customButtonStyles};
 `;
