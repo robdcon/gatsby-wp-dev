@@ -13,7 +13,7 @@ const colors = {
     lightText: '#ffffff',
     darkText: '#000000',
     greyLightText: '#aaaaaa',
-    greyDarkText: '#aaaaaa',
+    greyDarkText: '#787878',
     borderLight: '#dddddd'
 }
 
@@ -31,7 +31,8 @@ const Theme = {
         lightText: colors.lightText,
         darkText: colors.darkText,
         greyLightText: colors.greyLightText,
-        borderColor: colors.borderLight
+        borderColor: colors.borderLight,
+        greyDarkText: '#787878'
     },
 
     colorsInvert: {
@@ -53,9 +54,7 @@ const Theme = {
     horizontalNavStyles: `
         display: flex;
         flex-direction: column;
-    `,
-
-    footerBackground: colors.darkBackground
+    `
 }
 
 

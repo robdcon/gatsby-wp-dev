@@ -11,8 +11,8 @@ const Navigation = (props) => {
       {
         pages && pages.map(({node}) => {
             return(
-              <NavListItem key={node.title}>
-                <NavLink text={node.title} href={node.link} />
+              <NavListItem key={node.title} className="nav__list-item">
+                <NavLink text={node.title} href={node.link} className="nav__link" />
               </NavListItem>
             )
           })

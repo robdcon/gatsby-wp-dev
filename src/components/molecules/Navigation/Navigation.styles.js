@@ -33,7 +33,7 @@ export const NavListItem = styled.li`
 
 export const NavLink = styled(Link)`
     &:hover {
-        color: ${({theme}) => theme.primaryColor};
+        color: ${({theme}) => theme.colors.primaryColor};
         transform: translateY(-5px);
         text-decoration: none;
     }

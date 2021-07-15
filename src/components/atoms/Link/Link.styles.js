@@ -14,5 +14,5 @@ export const StyledLink = styled(Link)`
         color: #fff;
     }
 
-    ${hoverStyles};
+    ${hoverStyles({color: '#fff', hoverColor: ({theme}) => theme.colors.primaryColor })};
 `;
