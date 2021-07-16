@@ -12,13 +12,9 @@ const Card = ({title, linkText, description, image }) => {
   return (
     <StyledCard className="CardWrapper">
       <GatsbyImage 
-      className="logo" 
+        className="logo" 
         image={featuredImage.fluid} 
-        alt=""
-        placeholder="blurred"
-        layout="fixed"
-        width={150}
-        height={100} 
+        alt={featuredImage.alt}
       />
       <h3>{title}</h3>
       <StyledDescription>
