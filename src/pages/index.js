@@ -2,6 +2,7 @@ import React from "react";
 import { graphql } from "gatsby";
 import HeroSection from "../components/organisms/HeroSection";
 import Button from "../components/atoms/Button";
+import CardContainer from "../components/organisms/CardContainer";
 import Seo from 'gatsby-plugin-wpgraphql-seo';
 
 // We're using Gutenberg so we need the block styles
@@ -10,17 +11,33 @@ import "@wordpress/block-library/build-style/theme.css";
 
 import Layout from "../templates/layout";
 
-const HomePage = ({data}) => {
-    console.log('Data:', data)
+const HomePage = ({
+    data: {
+        wpPage: page,
+        wpPage: {
+            HeroDetails: {
+                heading,
+                ctaText
+            }
+        },
+        allWpService: {
+            edges
+        }
+    }
+    }) => {
+    // console.log('Data:', page)
     return (
         <>
-            <Seo post={data.wpPage} />
+            <Seo post={page} />
             <Layout>
                 <HeroSection>
-                    <h1>{data.wpPage.HeroDetails.heading}</h1>
-                    <p>{data.wpPage.HeroDetails.heading}</p>
-                    <Button text={data.wpPage.HeroDetails.ctaText} action={() => {console.log('clicked')}} />
+                    <h1>{heading}</h1>
+                    <p>{heading}</p>
+                    <Button text={ctaText} action={() => {console.log('clicked')}} />
                 </HeroSection>
+                <CardContainer 
+                    cards={edges}
+                />
             </Layout>
         </>
     )
@@ -42,6 +59,30 @@ export const pageQuery = graphql`
             seo {
                 title
                 metaDesc
+            }
+        }
+
+        allWpService {
+            edges {
+                card: node {
+                  details: ServiceDetails {
+                    title: serviceName
+                    linkText: serviceLinkText
+                    linkUrl: serviceLink {
+                      target
+                      title
+                      url
+                    }
+                    image: serviceImage {
+                        localFile {
+                          childImageSharp {
+                            gatsbyImageData
+                          }
+                        }
+                      }
+                    description: serviceDescription
+                  }
+                }
             }
         }
     }
