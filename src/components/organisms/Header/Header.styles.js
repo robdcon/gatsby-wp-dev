@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { centerContent } from '../../../utils/mixins';
+import { hoverStyles } from '../../../utils/mixins';
 
 export const StyledHeader = styled.header`
     ${centerContent};
@@ -9,6 +10,10 @@ export const StyledHeader = styled.header`
     position: fixed;
     top: 0;
     left: 0;
-    background-color: #000;
+    background-color: #fff;
     z-index: var(--stack-level-1);
+
+    a {
+        ${hoverStyles({color: '#fff', hoverColor: ({theme}) => theme.colors.primaryColor })};
+    }
 `;

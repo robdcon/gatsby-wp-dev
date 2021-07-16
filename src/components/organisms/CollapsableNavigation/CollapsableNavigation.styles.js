@@ -3,8 +3,8 @@ import { media } from '../../../utils/media';
 
 export const NavWrapper = styled.div`
     display: flex;
-    background-color: #000;
-    z-index: 99;
+    background-color: #fff;
+    z-index: var(--stack-level-3);
     width: 100%;
     &.mobile-nav {
         position: absolute;

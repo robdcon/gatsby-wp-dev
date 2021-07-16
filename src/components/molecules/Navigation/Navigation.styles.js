@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { media } from '../../../utils/media';
+import { hoverStyles } from '../../../utils/mixins';
 import Link from '../../atoms/Link';
 
 export const Nav = styled.nav`

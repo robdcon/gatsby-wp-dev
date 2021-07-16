@@ -1,16 +1,15 @@
 import styled from 'styled-components';
 import { Link } from 'gatsby';
-import { hoverStyles } from '../../../utils/mixins';
 
 export const StyledLink = styled(Link)`
     position: relative;
     font-family: ${({theme}) => theme.primaryFont};
-    color: #fff;
+    color: ${({theme}) => theme.colors.greyDarkText};
     font-weight: 300;
     text-decoration: none;
     transition: 0.2s ease-in-out;
 
     &:active, &:visited {
-        color: #fff;
+        color: ${({theme}) => theme.colors.greyDarkText};
     }
 `;
