@@ -16,7 +16,7 @@ export const FooterNav = styled(Navigation)`
                 color: ${({theme}) => theme.colors.greyDarkText};
             }
             &:hover {
-            color: ${({theme}) => theme.colors.greyLightText};
+                color: ${({theme}) => theme.colors.greyLightText};
             }
             ${hoverStyles({color: ({theme}) => theme.colors.greyDarkText, hoverColor: ({theme}) => theme.colors.greyLightText })};
         }

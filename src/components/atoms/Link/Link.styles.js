@@ -13,6 +13,4 @@ export const StyledLink = styled(Link)`
     &:active, &:visited {
         color: #fff;
     }
-
-    ${hoverStyles({color: '#fff', hoverColor: ({theme}) => theme.colors.primaryColor })};
 `;
