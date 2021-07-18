@@ -46,13 +46,7 @@ const Layout = ({ isHomePage, children }) => {
         <div className="wrapper" data-is-root-path={isHomePage}>
           <Header className="header" />
           <main>{children}</main>
-          <Footer>
-            © {new Date().getFullYear()}, Built with
-            {` `}
-            <Link to="https://www.gatsbyjs.com">Gatsby</Link>
-            {` `}
-            And <Link to="https://wordpress.org/">WordPress</Link>
-          </Footer>
+          <Footer />
         </div>
       </Seo>
     </ThemeProvider>
