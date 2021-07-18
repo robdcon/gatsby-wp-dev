@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-
 export const StyledCheckbox = styled.label`
     display: block;
     position: relative;
     margin: .5em 0 1em;
-    padding: .125em;
+    padding: .125em .125em .125em calc(24px + 8px);
     font-family: ${({theme}) => theme.primaryFont};
     font-weight: 100;
     font-size: 1em;
@@ -50,7 +49,6 @@ export const StyledCheckbox = styled.label`
     }
 
     input[type=checkbox]:checked ~ .checkbox--custom {
-        background-color: ${({theme}) => theme.colors.primaryColor};
         &:before {
             display: block;
         }
