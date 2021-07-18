@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 import HeroSection from "../components/organisms/HeroSection";
 import Button from "../components/atoms/Button";
 import CardContainer from "../components/organisms/CardContainer";
+import Form from "../components/organisms/Form";
 import Seo from 'gatsby-plugin-wpgraphql-seo';
 
 // We're using Gutenberg so we need the block styles
@@ -38,6 +39,9 @@ const HomePage = ({
                 <CardContainer 
                     cards={edges}
                 />
+                <section>
+                    <Form />
+                </section>
             </Layout>
         </>
     )
