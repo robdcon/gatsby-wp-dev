@@ -1,38 +1,11 @@
 import styled from 'styled-components';
 import { media } from '../../../utils/media';
+import { hoverStyles } from '../../../utils/mixins';
 import Link from '../../atoms/Link';
 
 export const Nav = styled.nav`
-    position: fixed;    
-    top: 0;
-    left: 0;
     display: flex;
     width: 100%;
-    background-color: #000;
-
-    &.mobile-nav {
-        padding-top: 80px;
-        justify-content: center;
-        min-height: 100vh;
-
-        &.nav-open-false {
-            display: none;
-        }
-
-        ${media.desktop`
-            display: none;
-        `}
-    }
-
-    &.desktop-nav {
-        display: none;
-        min-height: 80px;
-        padding-top: 0;
-
-        ${media.desktop`
-            display: flex;
-        `}
-    }
 `;
 
 export const NavList = styled.ul`
@@ -43,9 +16,7 @@ export const NavList = styled.ul`
     margin: 0;
 
     ${media.desktop`
-        height: 80px;
-        min-height: auto;
-        flex-direction: row;
+        ${props => !(props.vertical) && `flex-direction: row`};
         justify-content: center;
         align-items: center;
     `}
@@ -62,9 +33,5 @@ export const NavListItem = styled.li`
 `;
 
 export const NavLink = styled(Link)`
-    &:hover {
-        color: ${({theme}) => theme.primaryColor};
-        transform: translateY(-5px);
-        text-decoration: none;
-    }
+    ${hoverStyles({color: '#fff', hoverColor: ({theme}) => theme.colors.primaryColor })};
 `;

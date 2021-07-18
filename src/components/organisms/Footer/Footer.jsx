@@ -1,9 +1,15 @@
 import React from 'react';
-import { FooterWrapper } from './Footer.styles';
+import { FooterWrapper, FooterNav } from './Footer.styles';
+import Logo from '../../atoms/Logo';
+import Row from '../../molecules/Row';
 
-const Footer = ({children}) => (
+const Footer = () => (
   <FooterWrapper className="footer-wrapper">
-    {children}
+    <Row spaceBetween className="footer__row">
+      <FooterNav vertical className="footer__nav" />
+        <Logo className="footer__logo" />
+      <FooterNav vertical className="footer__nav" />
+    </Row>
   </FooterWrapper>
 );
 

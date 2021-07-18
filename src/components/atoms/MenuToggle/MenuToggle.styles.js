@@ -4,14 +4,13 @@ import { media } from '../../../utils/media';
 
 
 export const MenuButton = styled(MenuIcon)`
-    position: fixed;
     right: 24px;
     top: 24px;
-    z-index: 999;
+    z-index: var(--stack-level-1);
     color: #fff;
 
     &.nav-open-false {
-        color: #000;
+        color: #fff;
     }
 
     ${media.desktop`

@@ -1,6 +1,6 @@
 import {css} from 'styled-components';
 
-export const display = css`
+export const centerContent = css`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -56,14 +56,13 @@ export const customButtonStyles = css`
     }
 `;
 
-export const hoverStyles = css`
+export const hoverStyles = ({color, hoverColor}) => css`
     &:hover {
-        color: ${({theme}) => theme.colors.primaryColor};  
+        color: ${hoverColor};  
         &[aria-current="page"]:after {
             width: 100%;
         }
     }
-
 
     &[aria-current="page"] {
         &:after, &:before {
@@ -78,12 +77,12 @@ export const hoverStyles = css`
 
         &:after {
             width: 0;
-            border-bottom: 2px solid ${({theme}) => theme.colors.primaryColor};
+            border-bottom: 2px solid ${hoverColor};
         }
 
         &:before {
             width: 100%;
-            border-bottom: 2px solid #fff;
+            border-bottom: 2px solid ${color};
         }
     }
 `;
