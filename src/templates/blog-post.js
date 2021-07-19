@@ -1,11 +1,11 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import Image from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import parse from "html-react-parser"
 
 // We're using Gutenberg so we need the block styles
-import "@wordpress/block-library/build-style/style.css"
-import "@wordpress/block-library/build-style/theme.css"
+// import "@wordpress/block-library/build-style/style.css"
+// import "@wordpress/block-library/build-style/theme.css"
 
 import Bio from "../components/bio"
 import Layout from "./layout"
@@ -13,7 +13,7 @@ import Seo from "../components/seo"
 
 const BlogPostTemplate = ({ data: { previous, next, post } }) => {
   const featuredImage = {
-    fluid: post.featuredImage?.node?.localFile?.childImageSharp?.fluid,
+    fluid: post.featuredImage?.node?.localFile?.childImageSharp?.gatsbyImageData,
     alt: post.featuredImage?.node?.alt || ``,
   }
 
@@ -33,8 +33,8 @@ const BlogPostTemplate = ({ data: { previous, next, post } }) => {
 
           {/* if we have a featured image for this post let's display it */}
           {featuredImage?.fluid && (
-            <Image
-              fluid={featuredImage.fluid}
+            <GatsbyImage
+              image={featuredImage.fluid}
               alt={featuredImage.alt}
               style={{ marginBottom: 50 }}
             />
@@ -102,12 +102,9 @@ export const pageQuery = graphql`
 
       featuredImage {
         node {
-          altText
           localFile {
             childImageSharp {
-              fluid(maxWidth: 1000, quality: 100) {
-                ...GatsbyImageSharpFluid_tracedSVG
-              }
+              gatsbyImageData
             }
           }
         }

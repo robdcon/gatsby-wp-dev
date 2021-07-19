@@ -5,10 +5,9 @@ import Button from "../components/atoms/Button";
 import CardContainer from "../components/organisms/CardContainer";
 import Form from "../components/organisms/Form";
 import Seo from 'gatsby-plugin-wpgraphql-seo';
-
 // We're using Gutenberg so we need the block styles
-import "@wordpress/block-library/build-style/style.css";
-import "@wordpress/block-library/build-style/theme.css";
+// import "@wordpress/block-library/build-style/style.css";
+// import "@wordpress/block-library/build-style/theme.css";
 
 import Layout from "../templates/layout";
 
@@ -26,7 +25,6 @@ const HomePage = ({
         }
     }
     }) => {
-    // console.log('Data:', page)
     return (
         <>
             <Seo post={page} />
@@ -36,7 +34,8 @@ const HomePage = ({
                     <p>{heading}</p>
                     <Button text={ctaText} action={() => {console.log('clicked')}} />
                 </HeroSection>
-                <CardContainer 
+                <CardContainer
+                    heading="Services"
                     cards={edges}
                 />
                 <section>
@@ -51,9 +50,10 @@ export default HomePage;
 
 export const pageQuery = graphql`
     query wpPageQuery {
-        wpPage(id: {eq: "cG9zdDo0OTI="}) {
+        wpPage(title: {eq: "Test Page One"}) {
             title
             uri
+            content
             HeroDetails {
               ctaText
               heading
@@ -80,7 +80,11 @@ export const pageQuery = graphql`
                     image: serviceImage {
                         localFile {
                           childImageSharp {
-                            gatsbyImageData
+                            gatsbyImageData(
+                                width: 400
+                                placeholder: BLURRED
+                                formats: [AUTO, WEBP, AVIF]
+                            )
                           }
                         }
                       }

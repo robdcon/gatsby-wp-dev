@@ -5,7 +5,7 @@ export const invertTheme = ({colors, colorsInvert, global}) => ({
 })
 
 const colors = {
-    primary: '#f96200',
+    primary: '#000000',
     secondary: '#000000',
     lightBackground: '#ffffff',
     darkBackground: '#000000',
@@ -42,6 +42,7 @@ const Theme = {
         lightText: colors.darkText,
         darkText: colors.lightText
     },
+
     primaryFont: fonts.primaryFont,
     sectionPadding: "32px 24px 48px 24px",
     cardPadding: "16px 16px 24px 16px",

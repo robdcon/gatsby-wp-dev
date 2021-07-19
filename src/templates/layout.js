@@ -6,37 +6,13 @@ import { ThemeProvider } from "styled-components";
 import Header from '../components/organisms/Header';
 import Footer from "../components/organisms/Footer";
 import Seo from "../components/seo";
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 
 export const PageContext = createContext();
 const Layout = ({ isHomePage, children }) => {
 
-  const {
-    allWpPage: {
-     edges
-    }
-  } = useStaticQuery(graphql`
-    query LayoutQuery {
-      wp {
-        generalSettings {
-          title
-          description
-        }
-      },
-      allWpPage {
-        edges {
-          node {
-            title
-            link
-          }
-        }
-      }
-    }
-  `)
-
-
   return (
-    <PageContext.Provider value={edges}>
+    <PageContext.Provider>
     <ThemeProvider theme={Theme}>
       <GlobalStyles />
       <Helmet>

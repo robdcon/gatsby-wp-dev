@@ -7,10 +7,10 @@ export const MenuButton = styled(MenuIcon)`
     right: 24px;
     top: 24px;
     z-index: var(--stack-level-1);
-    color: #fff;
+    color: ${({theme}) => theme.primaryColor};
 
     &.nav-open-false {
-        color: #fff;
+        color: ${({theme}) => theme.primaryColor};
     }
 
     ${media.desktop`
