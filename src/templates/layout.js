@@ -11,21 +11,6 @@ import { Helmet } from "react-helmet";
 export const PageContext = createContext();
 const Layout = ({ isHomePage, children }) => {
 
-  const {
-    allWpPage: {
-     edges
-    }
-  } = useStaticQuery(graphql`
-    query LayoutQuery {
-      wp {
-        generalSettings {
-          title
-          description
-        }
-      }
-    }
-  `)
-
   return (
     <PageContext.Provider>
     <ThemeProvider theme={Theme}>
