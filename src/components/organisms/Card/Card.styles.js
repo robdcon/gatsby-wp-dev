@@ -7,8 +7,13 @@ export const StyledCard = styled.div`
     flex-direction: column;
     box-shadow: ${({theme}) => theme.cardShadow};
     padding-bottom: 32px;
+    margin-bottom: 16px;
     border-radius: 6px;
     flex-basis: 100%;
+
+    &:last-of-type {
+        margin-bottom:0;
+    }
 
     h3 {
         padding: 0 16px 8px 16px;
@@ -19,7 +24,18 @@ export const StyledCard = styled.div`
         border-top-left-radius: 6px;
         border-top-right-radius: 6px;
     }
-    ${media.desktop`flex-basis: 33.333%`};
+    ${media.desktop`
+        flex-basis: 33.333%
+        margin-bottom: 0;
+        margin-left: 8px;
+        margin-right: 8px;
+        &:first-of-type {
+            margin-left: 0;
+        }
+        &:last-of-type {
+            margin-right: 0;
+        }
+    `};
 `;
 
 export const StyledDescription = styled.p`

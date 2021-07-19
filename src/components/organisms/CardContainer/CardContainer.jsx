@@ -1,10 +1,12 @@
 import React from 'react';
-import { CardRow } from './CardContainer.styles';
+import { CardRow, StyledCardContainer } from './CardContainer.styles';
 import Card from '../Card/Card';
 
-const CardContainer = ({cards}) => {
+const CardContainer = ({heading, cards}) => {
   console.log(cards)
   return(
+    <StyledCardContainer>
+    <h2>{heading}</h2>
     <CardRow className="CardContainerWrapper">
       {
         cards && cards.map(({card: { details: {title, description, linkText, linkUrl, image}}}) => {
@@ -20,6 +22,7 @@ const CardContainer = ({cards}) => {
         })
       }
     </CardRow>
+    </StyledCardContainer>
   )
 };
 

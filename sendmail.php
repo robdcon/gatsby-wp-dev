@@ -26,7 +26,7 @@ function sendEmail ($fname, $email, $message, $service) {
     $mail->setFrom('info@webdesign.robdcon.co.uk', 'Contact From');
     $mail->addReplyTo('robdcon@gmail.com', 'Rob');
 
-    $mail->Subject = 'New request from webdssign.robdcon.co.uk';
+    $mail->Subject = 'New request from webdesign.robdcon.co.uk';
     $mail->isHTML(true);
 
     //$mail->addAddress($email, $fname); 
