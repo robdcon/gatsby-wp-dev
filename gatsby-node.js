@@ -22,9 +22,9 @@ exports.createPages = async gatsbyUtilities => {
     return
   }
 
-  await createProjectArchive({ projects, gatsbyUtilities })
+  // await createProjectArchive({ projects, gatsbyUtilities })
 
-  await createIndividualProjectPages({ projects, gatsbyUtilities })
+  // await createIndividualProjectPages({ projects, gatsbyUtilities })
 
   // If there are posts, create pages for them
   await createIndividualBlogPostPages({ posts, gatsbyUtilities })

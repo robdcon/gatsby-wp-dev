@@ -7,6 +7,7 @@ export const CardRow = styled.section`
     flex-direction: column;
     width: 100%;
     justify-content: space-evenly;
+    align-items: center;
     padding: ${({theme}) => theme.sectionPadding};
 
     ${media.desktop`

@@ -10,6 +10,7 @@ export const StyledCard = styled.div`
     margin-bottom: 16px;
     border-radius: 6px;
     flex-basis: 100%;
+    max-width: 400px;
 
     &:last-of-type {
         margin-bottom:0;
@@ -34,6 +35,7 @@ export const StyledCard = styled.div`
         }
         &:last-of-type {
             margin-right: 0;
+            margin-bottom: 16px;
         }
     `};
 `;

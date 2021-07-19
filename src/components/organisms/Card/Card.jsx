@@ -4,17 +4,17 @@ import { GatsbyImage } from "gatsby-plugin-image";
 import Button from '../../atoms/Button';
 
 const Card = ({title, linkText, description, image }) => {
-  console.log(image)
   const featuredImage = {
-    fluid: image?.localFile?.childImageSharp?.gatsbyImageData,
+    image: image?.localFile?.childImageSharp?.gatsbyImageData,
     alt: image?.node?.alt || ``,
   }
   return (
     <StyledCard className="CardWrapper">
       <GatsbyImage 
         className="logo" 
-        image={featuredImage.fluid} 
+        image={featuredImage.image} 
         alt={featuredImage.alt}
+        width="400px"
       />
       <h3>{title}</h3>
       <StyledDescription>
