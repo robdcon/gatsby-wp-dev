@@ -1,7 +1,7 @@
 import React, { createContext } from "react";
-import { useStaticQuery, graphql, Link } from "gatsby";
+import { useStaticQuery, graphql } from "gatsby";
 import { GlobalStyles } from "../themes/global-styles";
-import Theme from '../themes/theme';
+import Theme from '../themes/Theme';
 import { ThemeProvider } from "styled-components";
 import Header from '../components/organisms/Header';
 import Footer from "../components/organisms/Footer";
