@@ -1,6 +1,6 @@
 import React from "react"
 import { Link, graphql } from "gatsby"
-import Image from "gatsby-image"
+import { GatsbyImage } from "gatsby-plugin-image";
 import parse from "html-react-parser"
 
 // We're using Gutenberg so we need the block styles
@@ -13,8 +13,8 @@ import Seo from "../components/seo"
 
 const ProjectTemplate = ({ data: { previous, next, project } }) => {
   const featuredImage = {
-    fluid: project.featuredImage?.node?.localFile?.childImageSharp?.fluid,
-    alt: project.featuredImage?.node?.alt || ``,
+    image: project?.localFile?.childImageSharp?.gatsbyImageData,
+    alt: project?.node?.alt || ``,
   }
 
   return (
@@ -32,9 +32,9 @@ const ProjectTemplate = ({ data: { previous, next, project } }) => {
           <p>{project.date}</p>
 
           {/* if we have a featured image for this project let's display it */}
-          {featuredImage?.fluid && (
-            <Image
-              fluid={featuredImage.fluid}
+          {featuredImage?.image && (
+            <GatsbyImage
+              image={featuredImage.image}
               alt={featuredImage.alt}
               style={{ marginBottom: 50 }}
             />
@@ -64,7 +64,7 @@ const ProjectTemplate = ({ data: { previous, next, project } }) => {
         >
           <li>
             {previous && (
-              <Link to={previous.uri} rel="prev">
+              <Link to={`/projects/${previous.slug}`} rel="prev">
                 ← {parse(previous.title)}
               </Link>
             )}
@@ -72,7 +72,7 @@ const ProjectTemplate = ({ data: { previous, next, project } }) => {
 
           <li>
             {next && (
-              <Link to={next.uri} rel="next">
+              <Link to={`/projects/${next.slug}`} rel="next">
                 {parse(next.title)} →
               </Link>
             )}
@@ -104,9 +104,11 @@ export const pageQuery = graphql`
           altText
           localFile {
             childImageSharp {
-              fluid(maxWidth: 1000, quality: 100) {
-                ...GatsbyImageSharpFluid_tracedSVG
-              }
+              gatsbyImageData(
+                  width: 1000
+                  placeholder: BLURRED
+                  formats: [AUTO, WEBP, AVIF]
+              )
             }
           }
         }
@@ -117,12 +119,14 @@ export const pageQuery = graphql`
     previous: wpPersonalProject(id: { eq: $previousProjectId }) {
       uri
       title
+      slug
     }
 
     # this gets us the next project by id (if it exists)
     next: wpPersonalProject(id: { eq: $nextProjectId }) {
       uri
       title
+      slug
     }
   }
 `

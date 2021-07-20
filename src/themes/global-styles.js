@@ -33,6 +33,7 @@ body {
 
 main {
   display: block;
+  padding-top: 80px;
 }
 
 /**

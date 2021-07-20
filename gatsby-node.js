@@ -22,9 +22,9 @@ exports.createPages = async gatsbyUtilities => {
     return
   }
 
-  // await createProjectArchive({ projects, gatsbyUtilities })
+  await createProjectArchive({ projects, gatsbyUtilities })
 
-  // await createIndividualProjectPages({ projects, gatsbyUtilities })
+  await createIndividualProjectPages({ projects, gatsbyUtilities })
 
   // If there are posts, create pages for them
   await createIndividualBlogPostPages({ posts, gatsbyUtilities })
@@ -33,38 +33,6 @@ exports.createPages = async gatsbyUtilities => {
   await createBlogPostArchive({ posts, gatsbyUtilities })
 
 }
-
-/**
- * This function creates all the individual blog pages in this site
- */
-const createIndividualBlogPostPages = async ({ posts, gatsbyUtilities }) =>
-Promise.all(
-  posts.map(({ previous, post, next }) =>
-    // createPage is an action passed to createPages
-    // See https://www.gatsbyjs.com/docs/actions#createPage for more info
-    gatsbyUtilities.actions.createPage({
-      // Use the WordPress uri as the Gatsby page path
-      // This is a good idea so that internal links and menus work 👍
-      path: post.uri,
-
-      // use the blog post template as the page component
-      component: path.resolve(`./src/templates/blog-post.js`),
-
-      // `context` is available in the template as a prop and
-      // as a variable in GraphQL.
-      context: {
-        // we need to add the post id here
-        // so our blog post template knows which blog post
-        // the current page is (when you open it in a browser)
-        id: post.id,
-
-        // We also use the next and previous id's to query them and add links!
-        previousPostId: previous ? previous.id : null,
-        nextPostId: next ? next.id : null,
-      },
-    })
-  )
-);
 
 const createIndividualProjectPages = async ({ projects, gatsbyUtilities }) =>
   Promise.all(
@@ -75,7 +43,7 @@ const createIndividualProjectPages = async ({ projects, gatsbyUtilities }) =>
 
         // Use the WordPress uri as the Gatsby page path
         // This is a good idea so that internal links and menus work 👍
-        path: project.uri,
+        path: `projects/${project.slug}`,
 
         // use the blog post template as the page component
         component: path.resolve(`./src/templates/project.js`),
@@ -84,7 +52,7 @@ const createIndividualProjectPages = async ({ projects, gatsbyUtilities }) =>
         // as a variable in GraphQL.
         context: {
           // we need to add the post id here
-          // so our blog post template knows which blog post
+          // so our project template knows which project
           // the current page is (when you open it in a browser)
           id: project.id,
 
@@ -100,16 +68,18 @@ async function createProjectArchive({ projects, gatsbyUtilities }) {
  const totalPages = projects.length;
 
   return Promise.all(
-    projects.map(async (_projects, index) => {
+    projects.map(async (_project, index) => {
+     console.log('index:', index)
+     console.log('project:', _project)
       const pageNumber = index + 1
       const postsPerPage = 10;
-      const getPagePath = page => {
+      const getPagePath = (_project, page) => {
         if (page > 0 && page <= totalPages) {
           // Since our homepage is our blog page
           // we want the first page to be "/" and any additional pages
           // to be numbered.
           // "/blog/2" for example
-          return page === 1 ? `/projects` : `/projects/${page}`
+          return page === 1 ? `/projects` : `/projects/${_project.slug}`
         }
 
         return null
@@ -118,7 +88,7 @@ async function createProjectArchive({ projects, gatsbyUtilities }) {
       // createPage is an action passed to createPages
       // See https://www.gatsbyjs.com/docs/actions#createPage for more info
       await gatsbyUtilities.actions.createPage({
-        path: getPagePath(pageNumber),
+        path: getPagePath(_project, (pageNumber)),
 
         // use the blog post archive template as the page component
         component: path.resolve(`./src/templates/project-archive.js`),
@@ -134,8 +104,8 @@ async function createProjectArchive({ projects, gatsbyUtilities }) {
           // We need to tell the template how many posts to display too
           postsPerPage,
 
-          nextPagePath: getPagePath(pageNumber + 1),
-          previousPagePath: getPagePath(pageNumber - 1),
+          nextPagePath: getPagePath(_project, (pageNumber + 1)),
+          previousPagePath: getPagePath(_project, (pageNumber - 1)),
         },
       })
     })
@@ -143,9 +113,89 @@ async function createProjectArchive({ projects, gatsbyUtilities }) {
 }
 
 /**
+ * Get Projects (Custom Post Type)
+ */
+async function getProjects({graphql, reporter}) {
+  const graphqlResult = await graphql(/* GraphQL */ `
+    query PersonalProjectsQuery {
+      # Query all WordPress blog posts sorted by date
+      allWpPersonalProject(sort: { fields: [date], order: DESC }) {
+        edges {
+          previous {
+            id
+            slug
+          }
+
+          # note: this is a GraphQL alias. It renames "node" to "post" for this query
+          # We're doing this because this "node" is a post! It makes our code more readable further down the line.
+          project: node {
+            id
+            uri
+            title
+            slug
+          }
+
+          next {
+            id
+            slug
+          }
+        }
+      }
+    }`
+  );
+
+  if (graphqlResult.errors) {
+    reporter.panicOnBuild(
+      `There was an error loading your blog posts`,
+      graphqlResult.errors
+    )
+    return
+  }
+
+  return graphqlResult.data.allWpPersonalProject.edges;
+}
+
+
+///////////////////////////////////////////////////////////////
+
+
+/**
  * This function creates all the individual blog pages in this site
  */
-async function createBlogPostArchive({ posts, gatsbyUtilities }) {
+ const createIndividualBlogPostPages = async ({ posts, gatsbyUtilities }) =>
+ Promise.all(
+   posts.map(({ previous, post, next }) =>
+     // createPage is an action passed to createPages
+     // See https://www.gatsbyjs.com/docs/actions#createPage for more info
+     gatsbyUtilities.actions.createPage({
+       // Use the WordPress uri as the Gatsby page path
+       // This is a good idea so that internal links and menus work 👍
+       path: post.uri,
+ 
+       // use the blog post template as the page component
+       component: path.resolve(`./src/templates/blog-post.js`),
+ 
+       // `context` is available in the template as a prop and
+       // as a variable in GraphQL.
+       context: {
+         // we need to add the post id here
+         // so our blog post template knows which blog post
+         // the current page is (when you open it in a browser)
+         id: post.id,
+ 
+         // We also use the next and previous id's to query them and add links!
+         previousPostId: previous ? previous.id : null,
+         nextPostId: next ? next.id : null,
+       },
+     })
+   )
+ );
+
+
+/**
+ * This function creates all the individual blog pages in this site
+ */
+ async function createBlogPostArchive({ posts, gatsbyUtilities }) {
   const graphqlResult = await gatsbyUtilities.graphql(/* GraphQL */ `
     {
       wp {
@@ -231,6 +281,7 @@ async function getPosts({ graphql, reporter }) {
 
           next {
             id
+            uri
           }
         }
       }
@@ -246,45 +297,4 @@ async function getPosts({ graphql, reporter }) {
   }
 
   return graphqlResult.data.allWpPost.edges
-}
-
-/**
- * Get Projects (Custom Post Type)
- */
-async function getProjects({graphql, reporter}) {
-  const graphqlResult = await graphql(/* GraphQL */ `
-    query PersonalProjectsQuery {
-      # Query all WordPress blog posts sorted by date
-      allWpPersonalProject(sort: { fields: [date], order: DESC }) {
-        edges {
-          previous {
-            id
-          }
-
-          # note: this is a GraphQL alias. It renames "node" to "post" for this query
-          # We're doing this because this "node" is a post! It makes our code more readable further down the line.
-          project: node {
-            id
-            uri
-            title
-            slug
-          }
-
-          next {
-            id
-          }
-        }
-      }
-    }`
-  );
-
-  if (graphqlResult.errors) {
-    reporter.panicOnBuild(
-      `There was an error loading your blog posts`,
-      graphqlResult.errors
-    )
-    return
-  }
-
-  return graphqlResult.data.allWpPersonalProject.edges;
 }
