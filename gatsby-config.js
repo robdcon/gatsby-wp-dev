@@ -22,15 +22,6 @@ module.exports = {
         lang: 'en'
       }
     },
-
-    {
-      resolve: `gatsby-plugin-material-ui`,
-      options: {
-        stylesProvider: {
-          injectFirst: true,
-        },
-      },
-    },
     
     `gatsby-plugin-styled-components`,
     
