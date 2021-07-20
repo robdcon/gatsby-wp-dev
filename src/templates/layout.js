@@ -8,11 +8,18 @@ import Footer from "../components/organisms/Footer";
 import Seo from "../components/seo";
 import { Helmet } from "react-helmet";
 
+const pages = [
+  {title: 'Home', link: '/'},
+  {title: 'About', link: '/about'},
+  {title: 'Contact', link: '/contact'},
+  {title: 'Projects', link: '/projects'}
+]
+
 export const PageContext = createContext();
 const Layout = ({ isHomePage, children }) => {
 
   return (
-    <PageContext.Provider>
+    <PageContext.Provider value={pages}>
     <ThemeProvider theme={Theme}>
       <GlobalStyles />
       <Helmet>

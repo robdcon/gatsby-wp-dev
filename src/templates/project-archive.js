@@ -19,7 +19,9 @@ const ProjectIndex = ({
             <div>
                 {projects.map((project, i) => {
                     return(
-                        <div key={i}><h2>{project.node.title}</h2></div>
+                        <div key={i}>
+                         <h2>{project.node.title}</h2>
+                        </div>
                     )
                 })}
             </div>

@@ -1,18 +1,17 @@
-import React, { useContext } from 'react';
-import { PageContext } from '../../../templates/layout';
+import React from 'react';
 import { Nav, NavList, NavListItem, NavLink } from './Navigation.styles';
 
 
-const Navigation = (props) => {
-  const pages = useContext(PageContext);
+const Navigation = ({props, links}) => {
+  console.log(links)
   return(
     <Nav className="nav">
       <NavList {...props} >
       {
-        pages && pages.map(({node}) => {
+        links && links.map((link) => {
             return(
-              <NavListItem key={node.title} className="nav__list-item">
-                <NavLink text={node.title} href={node.link} className="nav__link" />
+              <NavListItem key={link.title} className="nav__list-item">
+                <NavLink text={link.title} href={link.link} className="nav__link" />
               </NavListItem>
             )
           })
