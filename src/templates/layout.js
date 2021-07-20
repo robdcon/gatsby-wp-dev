@@ -11,7 +11,8 @@ import { Helmet } from "react-helmet";
 const pages = [
   {title: 'Home', link: '/'},
   {title: 'About', link: '/about'},
-  {title: 'Contact', link: '/contact'}
+  {title: 'Contact', link: '/contact'},
+  {title: 'Projects', link: '/projects'}
 ]
 
 export const PageContext = createContext();
