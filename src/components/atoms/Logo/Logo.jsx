@@ -6,8 +6,8 @@ const Logo = () => (
   <StyledLogo>
     <StaticImage 
       className="logo" 
-      src="https://via.placeholder.com/100x100" 
-      alt=""
+      src="../../../images/gatsby-icon.png" 
+      alt="Gatsby"
       placeholder="blurred"
       layout="fixed"
       width={50}

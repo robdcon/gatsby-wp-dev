@@ -11,14 +11,14 @@ import Seo from 'gatsby-plugin-wpgraphql-seo';
 
 import Layout from "../templates/layout";
 
-const HomePage = ({
+const ContactPage = ({
     data: {
         wpPage: page,
         wpPage: {
             HeroDetails: {
                 heading,
-                subheading,
-                ctaText
+                ctaText,
+                subheading
             }
         },
         allWpService: {
@@ -47,11 +47,11 @@ const HomePage = ({
     )
 }
 
-export default HomePage;
+export default ContactPage;
 
 export const pageQuery = graphql`
-    query homePageQuery {
-        wpPage(title: {eq: "Test Page One"}) {
+    query contactPageQuery {
+        wpPage(title: {eq: "Contact Me"}) {
             title
             uri
             content
