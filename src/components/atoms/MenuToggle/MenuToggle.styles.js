@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-// import MenuIcon from '@material-ui/icons/Menu';
 import { media } from '../../../utils/media';
 
 
