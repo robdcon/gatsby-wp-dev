@@ -35,11 +35,11 @@ const HomePage = ({
                     <p>{subheading}</p>
                     <Button text={ctaText} action={() => {console.log('clicked')}} />
                 </HeroSection>
-                {/* <CardContainer
+                <CardContainer
                     heading="Services"
                     cards={edges}
                 />
-                <section>
+                {/* <section>
                     <Form />
                 </section> */}
             </Layout>
