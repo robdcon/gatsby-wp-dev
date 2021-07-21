@@ -14,6 +14,12 @@ module.exports = {
    * If you need any more you can search here: https://www.gatsbyjs.com/plugins/
    */
   plugins: [
+    {
+      resolve: "gatsby-plugin-webpack-bundle-analyser-v2",
+      options: {
+        devMode: true,
+      },
+    },
     `gatsby-plugin-wpgraphql-seo`,
 
     {
@@ -49,35 +55,6 @@ module.exports = {
           process.env.WPGRAPHQL_URL ||
           // `https://wpgatsbydemo.wpengine.com/graphql`,
           `https://webdesign.robdcon.co.uk/graphql`,
-      },
-    },
-
-    {
-      resolve: 'gatsby-plugin-react-axe',
-      options: {
-        // Number of milliseconds to wait for component updates to cease before
-        // performing an analysis of all the changes. This defaults to 1000ms (1 second).
-        debounce: 1000,
-
-        // Integrate react-axe in production. This defaults to false.
-        showInProduction: true,
-
-        // Options to pass to axe-core.
-        // See: https://github.com/dequelabs/axe-core/blob/master/doc/API.md#api-name-axeconfigure
-        axeOptions: {
-          // Your axe-core options.
-            runOnly: {
-              type: 'tag',
-              values: ['wcag2a', 'wcag2aa']
-            }
-        },
-
-        // Context to pass to axe-core.
-        // See: https://github.com/dequelabs/axe-core/blob/master/doc/API.md#context-parameter
-        // axeContext: {
-        //   // Your axe-core context.
-         
-        // },
       },
     },
 
