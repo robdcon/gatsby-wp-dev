@@ -14,7 +14,7 @@ const Header = () => {
 
   return(
     <StyledHeader className="header">
-      <Logo src="https://via.placeholder.com/350x150" />
+      <Logo />
       <CollapsableNavigation navOpen={navOpen} />
       <MenuToggle action={handleNav} isNavOpen={navOpen} />
     </StyledHeader>

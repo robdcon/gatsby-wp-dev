@@ -8,10 +8,10 @@ const Navigation = ({props, links}) => {
     <Nav className="nav">
       <NavList {...props} >
       {
-        links && links.map((link) => {
+        links && links.map(({title, link}) => {
             return(
-              <NavListItem key={link.title} className="nav__list-item">
-                <NavLink text={link.title} href={link.link} className="nav__link" />
+              <NavListItem key={title} className="nav__list-item">
+                <NavLink text={title} href={link} className="nav__link" />
               </NavListItem>
             )
           })
