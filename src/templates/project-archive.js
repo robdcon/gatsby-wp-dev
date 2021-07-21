@@ -1,9 +1,9 @@
 import React from "react";
 import { graphql } from "gatsby";
-
-import Bio from "../components/bio"
-import Layout from "./layout"
-import Seo from "../components/seo"
+import Layout from "./layout";
+import Seo from "../components/seo";
+import Link from "../components/atoms/Link";
+import Row from "../components/molecules/Row";
 
 const ProjectIndex = ({
     data,
@@ -13,18 +13,23 @@ const ProjectIndex = ({
     console.log('ProjectIndex Data:', data)
     return(
         <Layout>
-            <Seo title="All projects" />
-            <Bio />
-            <h1>All Projects</h1>
-            <div>
-                {projects.map((project, i) => {
-                    return(
-                        <div key={i}>
-                         <h2>{project.node.title}</h2>
-                        </div>
-                    )
-                })}
-            </div>
+            <Seo 
+                title="All projects" 
+                meta={[{description: "My projects"}]}
+            />
+            <Row>
+                <h1>All Projects</h1>
+                <div>
+                    {projects.map((project, i) => {
+                        return(
+                            <div key={i}>
+                            <h2>{project.node.title}</h2>
+                            <Link href={`/projects/${project.node.slug}`} text={`View Project >`} />
+                            </div>
+                        )
+                    })}
+                </div>
+            </Row>
         </Layout>
     )
 }

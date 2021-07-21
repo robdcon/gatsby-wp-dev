@@ -1,15 +1,10 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
+import React from "react";
+import { Link, graphql } from "gatsby";
 import { GatsbyImage } from "gatsby-plugin-image";
-import parse from "html-react-parser"
-
-// We're using Gutenberg so we need the block styles
-// import "@wordpress/block-library/build-style/style.css"
-// import "@wordpress/block-library/build-style/theme.css"
-
-import Bio from "../components/bio"
-import Layout from "./layout"
-import Seo from "../components/seo"
+import parse from "html-react-parser";
+import Layout from "./layout";
+import Seo from "../components/seo";
+import Row from "../components/molecules/Row";
 
 const ProjectTemplate = ({ data: { previous, next, project } }) => {
   const featuredImage = {
@@ -20,38 +15,35 @@ const ProjectTemplate = ({ data: { previous, next, project } }) => {
   return (
     <Layout>
       <Seo title={project.title} />
+      <Row>
+        <article
+          className="project"
+          itemScope
+          itemType="http://schema.org/Article"
+        >
+          <header>
+            <h1 itemProp="headline">{parse(project.title)}</h1>
 
-      <article
-        className="project"
-        itemScope
-        itemType="http://schema.org/Article"
-      >
-        <header>
-          <h1 itemProp="headline">{parse(project.title)}</h1>
+            <p>{project.date}</p>
 
-          <p>{project.date}</p>
+            {/* if we have a featured image for this project let's display it */}
+            {featuredImage?.image && (
+              <GatsbyImage
+                image={featuredImage.image}
+                alt={featuredImage.alt}
+                style={{ marginBottom: 50 }}
+              />
+            )}
 
-          {/* if we have a featured image for this project let's display it */}
-          {featuredImage?.image && (
-            <GatsbyImage
-              image={featuredImage.image}
-              alt={featuredImage.alt}
-              style={{ marginBottom: 50 }}
-            />
+          </header>
+
+          {!!project.content && (
+            <section itemProp="articleBody">{parse(project.content)}</section>
           )}
-        </header>
 
-        {!!project.content && (
-          <section itemProp="articleBody">{parse(project.content)}</section>
-        )}
-
-        <hr />
-
-        <footer>
-          <Bio />
-        </footer>
-      </article>
-
+        </article>
+        <div></div>
+      </Row>
       <nav className="project-nav">
         <ul
           style={{
