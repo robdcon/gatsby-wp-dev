@@ -12,4 +12,8 @@ export const StyledLink = styled(Link)`
     &:active, &:visited {
         color: ${({theme}) => theme.colors.greyDarkText};
     }
+
+    &:hover {
+        cursor: pointer;
+    }
 `;
