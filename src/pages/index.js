@@ -39,9 +39,9 @@ const HomePage = ({
                     heading="Services"
                     cards={edges}
                 />
-                {/* <section>
+                <section>
                     <Form />
-                </section> */}
+                </section>
             </Layout>
         </>
     )
