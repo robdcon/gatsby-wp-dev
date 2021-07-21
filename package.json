@@ -27,6 +27,7 @@
     "gatsby-plugin-react-helmet": "^4.0.0",
     "gatsby-plugin-sharp": "^3.8.0",
     "gatsby-plugin-styled-components": "^4.8.0",
+    "gatsby-plugin-webpack-bundle-analyser-v2": "^1.1.24",
     "gatsby-plugin-wpgraphql-seo": "^1.2.0",
     "gatsby-source-filesystem": "^3.0.0",
     "gatsby-source-wordpress": "^5.0.0",
