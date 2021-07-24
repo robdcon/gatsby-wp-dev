@@ -128,9 +128,9 @@ const ContactForm = ({children, ...props}) => {
                 )   
             })
           }
-          <Field as={Checkbox} name="option-1"value="web design" label="Web Design" />
+          <Field as={Checkbox} name="option-1" value="web design" label="Web Design" />
           <Button type="submit" value="Submit" text={`SUBMIT`} disabled={ isSubmitting } />
-          </Form>
+        </Form>
       </StyledForm>
   )}
   </Formik>
